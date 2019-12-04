@@ -1,1 +1,27 @@
-<h1>Hello World!</h1>
+{% extends 'base.html' %}
+{% block content %}
+
+{% if ticker %}
+    {{ ticker }}
+{% endif %}
+
+{% if api %}
+    {% if api == 'Error...' %}
+        There was an error with your ticker symbol...please try again!
+    {% else %}
+    <div class="card border-primary mb-3" style="max-width: 20rem;">
+<div class="card-header"><h1>{{ api.companyName }}</h1></div>
+<div class="card-body">
+    <p class="card-text"> Price: ${{ api.latestPrice }}<br/>
+        Previous Close: ${{ api.previousClose }}<br/>
+        Market Cap: ${{ api.marketCap }}<br/>
+        YTD Change: {{ api.ytdChange }}<br/>
+        52WK High: ${{ api.week52High }}<br/>
+        52WK Low: ${{ api.week52Low }}<br/></p>
+</div>
+</div>
+        
+    {% endif %}
+{% endif %}
+
+{% endblock %}

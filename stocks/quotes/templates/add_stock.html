@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Add Stock...</h1>
+<br/>
+
+<form action="{% url 'add_stock' %}" class="form-inline my-2 my-lg-0" method='POST'>
+        {% csrf_token %}
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">NASDAQ Symbol:</span>
+            </div>
+            <label class="col-form-label" for="inputDefault"></label>
+            <input class="form-control" type="search" placeholder="Add To Portfolio" id="inputDefault" aria-label="Search" name="ticker">
+            <div class="input-group-append">
+            <span class="input-group-append"><button class="btn btn-outline-info my-2 my-sm-0" type="submit" >Add Stock</button></span>
+            </div>
+        </div>
+    </div>
+</form><br/>
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr class="table-info">
+            <th scope="col">Company Name</th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Stock Price</th>
+            <th scope="col">Previous Close</th>
+            <th scope="col">Market Cap</th>
+            <th scope="col">52 Week High</th>
+            <th scope="col">52 Week Low</th>
+            <th scope="col">YTD Change</th>
+            <th scope="col">Delete Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if ticker %}
+            {% for list_item in output %}
+                <tr>
+                    <th scope="row">{{ list_item.companyName }}</th>
+                    <td>{{ list_item.symbol }}</td>
+                    <td>${{ list_item.latestPrice }}</td>
+                    <td>${{ list_item.previousClose }}</td>
+                    <td>${{ list_item.marketCap }}</td>
+                    <td>${{ list_item.week52High }}</td>
+                    <td>${{ list_item.week52Low }}</td>
+                    <td>{{ list_item.ytdChange }}%</td>
+                    <td><a href="/"><button type="button" class="btn btn-outline-danger my-2 my-sm-0  btn-sm">Delete</button></a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table> 
+
+<br/><br/>
+
+{% for list_item in output %}
+    {{ list_item.companyName }}<br/>
+    {{ list_item.latestPrice }}<br/>
+    {{ list_item.previousClose }}<br/>
+    {{ list_item.marketCap }}<br/>
+    {{ list_item.ytdChange }}<br/>
+    {{ list_item.week52High }}<br/>
+    {{ list_item.week52Low }}<br/><br/>
+{% endfor %}
+
+
+{% endblock %}

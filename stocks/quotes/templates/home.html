@@ -9,8 +9,8 @@
     {% if api == 'Error...' %}
         There was an error with your ticker symbol...please try again!
     {% else %}
-    <div class="card border-primary mb-3" style="max-width: 20rem;">
-<div class="card-header"><h1>{{ api.companyName }}</h1></div>
+    <div class="card border-info mb-3" style="max-width: 20rem;">
+<div class="card-header bg-info text-white"><h2>{{ api.companyName }}</h2></div>
 <div class="card-body">
     <p class="card-text"> Price: ${{ api.latestPrice }}<br/>
         Previous Close: ${{ api.previousClose }}<br/>

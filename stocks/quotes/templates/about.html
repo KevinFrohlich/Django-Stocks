@@ -10,8 +10,8 @@
                 url,
                 success: displayRepos
             });
-            function displayRepos(respos) {
-                for (let repo of respos) {
+            function displayRepos(repos) {
+                for (let repo of repos) {
                     let link = $('<a>').text(repo.full_name);
                     link.attr('href', repo.html_url);
                     $('#repos').append($('<li>').append(link));
@@ -165,14 +165,18 @@
 
         </div>
 
-        <footer class="footer container">
-            <button type="button" class="btn btn-info btn-lg btn-block"><div class="container" id="contact">
+    <footer class="container col-sm-12">
+        <button type="button" class="btn btn-info btn-lg btn-block">
+            <div class="container" id="contact">
                 <span class="text-item">Contact: (530) 604 9389 - Redding, CA.</span>
-                    <span><a class="nav-link" style="text-align: center" href="mailto:kevinfrohlich@gmail.com"><img src="https://static1.squarespace.com/static/58f705e5893fc0eeb1eaf706/t/5dd4d9026bae7d14c44542de/1574230275720/email.png?format=750w" id="email">
+                <span><a class="nav-link" style="text-align: center" href="mailto:kevinfrohlich@gmail.com"><img
+                            src="https://static1.squarespace.com/static/58f705e5893fc0eeb1eaf706/t/5dd4d9026bae7d14c44542de/1574230275720/email.png?format=750w"
+                            id="email">
                         kevinfrohlich@gmail.com</a></span>
-            </div></button>
-            
-        </footer>
+            </div>
+        </button>
+    
+    </footer>
     </div>
 
     
